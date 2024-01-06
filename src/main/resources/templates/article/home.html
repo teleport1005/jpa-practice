@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org/">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h1>Article List</h1>
+<div th:if="${article == null or article.isEmpty()}">
+    <p>작성된 게시글이 없습니다.</p>
+</div>
+<div th:if="${article != null}">
+    <ul>
+        <li th:each="item : ${article}">
+            <p>
+                <span th:text="${item.id + '. '}"></span>
+                <a th:href="@{'/article/read/' + ${item.id}}" th:text="${item.title}">[[${item.title}]]</a>
+            </p>
+        </li>
+    </ul>
+</div>
+<a href="/article/create-view">글쓰기</a>
+</body>
+</html>
